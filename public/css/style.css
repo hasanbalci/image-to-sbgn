@@ -27,6 +27,12 @@
   overflow: hidden;
 }
 
+#imageInput:hover {
+  box-shadow : 1px 1px 5px black;
+  transition: 0.5s;
+
+}
+
 #cySection {
   position: absolute;
   left: 710;
