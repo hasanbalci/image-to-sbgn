@@ -35,6 +35,7 @@ PORT=4000
 
 # API Key for OpenAI
 OPENAI_API_KEY=your_openai_key
+GEMINI_API_KEY=your_gemini_key
 ```
 
 4. Build the client bundle:
@@ -61,6 +62,7 @@ docker build -t image-to-sbgn .
 # Run the container
 docker run -p 4000:4000 \
   -e OPENAI_API_KEY=your_key \
+  -e GEMINI_API_KEY=your_gemini_key \
   image-to-sbgn
 ```
 
@@ -77,31 +79,32 @@ docker run -p 4000:4000 \
    - Activity Flow (AF): For high-level regulatory networks
 
 3. **Select AI Model Provider**:
+   - Gemini (Gemini 3.1 Pro)
    - OpenAI (GPT-5.2)
 
-4. **Add Optional Comments**: Provide additional context or instructions for the AI
+5. **Add Optional Comments**: Provide additional context or instructions for the AI
 
-5. **Generate**: Click the "Process Data" button to process your diagram
+6. **Generate**: Click the "Process Data" button to process your diagram
 
-6. **Review and Edit**: 
+7. **Review and Edit**: 
    - View the converted network in the interactive editor
    - Make adjustments if needed
    - Ground biological entities using the annotation feature
 
-7. **Export**: Download the SBGNML file for use in other tools
+8. **Export**: Download the SBGNML file for use in other tools
 
 ### CLI usage
 
 You can also convert images without the web UI:
 
 ```bash
-OPENAI_API_KEY=your_openai_key node src/cli.js --image ./diagram.png --language PD --output ./diagram.sbgn
+OPENAI_API_KEY=your_openai_key node src/cli.js --image ./diagram.png --language PD --model gpt-5.2 --output ./diagram.sbgn
 ```
 
 Or, after installing dependencies:
 
 ```bash
-OPENAI_API_KEY=your_openai_key npm run cli -- --image ./diagram.png --language PD --output ./diagram.sbgn
+OPENAI_API_KEY=your_openai_key npm run cli -- --image ./diagram.png --language PD --model gpt-5.2 --output ./diagram.sbgn
 ```
 
 Global install from a local checkout:
@@ -124,7 +127,7 @@ The following SBGN elements are currently not supported:
 
 ## API Endpoints
 
-### POST `/gpt`
+### POST `/sbgnml/from-image`
 
 Convert hand-drawn SBGN image to SBGNML format.
 
@@ -134,7 +137,29 @@ Convert hand-drawn SBGN image to SBGNML format.
   "image": "base64_encoded_image_or_url",
   "language": "PD",  // or "AF"
   "model": "gpt-5.2", // or another OpenAI model
-  "comment": "Optional additional instructions"
+  "context:": "Optional additional instructions"
+  "annotate": false // whether to annotate with identifiers
+}
+```
+
+**Response:**
+```json
+{
+  "answer": "SBGNML content as string"
+}
+```
+
+### POST `/sbgnml/edit`
+
+Edit given SBGNML content.
+
+**Request Body:**
+```json
+{
+  "sbgnml": "SBGNML content as string", 
+  "language": "PD",  // or "AF"
+  "model": "gpt-5.2", // or another OpenAI model
+  "instructions:": "Instructions to edit SBGNML content"
 }
 ```
 
@@ -186,10 +211,9 @@ Please ensure your PR:
 - Includes appropriate documentation
 - Has been tested with multiple SBGN diagrams
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Contact
 
 For questions or support, please open an issue on GitHub.
+
+## Team
+[Hasan Balci](https://github.com/hasanbalci) and [Augustin Luna](https://github.com/cannin) of [Luna Lab](https://github.com/sciluna)
