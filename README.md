@@ -61,7 +61,7 @@ docker build -t image-to-sbgn .
 
 # Run the container
 docker run -p 4000:4000 \
-  -e OPENAI_API_KEY=your_key \
+  -e OPENAI_API_KEY=your_openai_key \
   -e GEMINI_API_KEY=your_gemini_key \
   image-to-sbgn
 ```
