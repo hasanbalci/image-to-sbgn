@@ -96,3 +96,20 @@ h1 {
   display: inline-block;
   margin-bottom: 0px;
 }
+
+h2{
+  font-weight : 700;
+}
+
+
+h2 {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  text-decoration : none;
+  
+}
+
+#map{
+  
+}

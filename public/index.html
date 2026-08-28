@@ -10,6 +10,13 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/cytoscape-context-menus.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -17,12 +24,13 @@
 		<div class="ui vertically divided grid">
 			<div class="row" style="padding-bottom: 0; margin-top: 10px;">
 				<div class="four wide column" style="display: flex; align-items: center;">
-					<a href="https://github.com/sciluna" target="_blank" style="color: #d67664;">
-						<h2>Luna Lab</h2>
+					<a href="https://github.com/sciluna" target="_blank" style="color: #d67664">
+						<h2 >Luna Lab</h2>
 					</a>
 				</div>
 				<div class="eight wide column">
-					<h2 class="ui padded center aligned header" style="margin-top: 5px;">
+					<h2 class="ui padded center aligned header" style="margin-top: 5px;
+					">
 						Image-to-SBGN Converter
 					</h2>
 				</div>
@@ -53,9 +61,10 @@
 									</select>
 								</div>
 							</div>
-							<div class="ui button" id="load-file" tabindex="0">
+							<!-- <div class="ui button" id="load-file" tabindex="0">
 								Open File...
-							</div>
+							</div> -->
+							<button type="button" class="btn btn-warning">Open file...</button>
 							<div class="ui button" id="upload-file" tabindex="0" style="display:none" >
 								Load File...
 							</div>
@@ -73,11 +82,13 @@
 						style="margin-top: 10px; margin-bottom: 5px;">Settings</h3>
 					<div class="ui small form">
 						<div class="field">
-							<div class="inline fields"
-								style="margin-top: 0px; margin-bottom: 5px;">
-								<label style="margin-top: 5px;">Map Type</label>
+							<div class="inline fields"  id="map"
+								style="margin-top: 0px; margin-bottom: 5px;
+								">
+								<label style="margin-top: 5px;
+								font-size:15px;" for="map">Map Type</label>
 								<div class="field">
-									<div class="ui radio checkbox">
+									<!-- <div class="ui radio checkbox">
 										<input type="radio" id="radioPD" name="language" checked="checked">
 										<label>PD</label>
 									</div>
@@ -86,12 +97,31 @@
 									<div class="ui radio checkbox">
 										<input type="radio" id="radioAF" name="language">
 										<label>AF</label>
-									</div>
+									</div> -->
+									<div class="form-check">
+  <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+  <label class="form-check-label" for="radioDefault1">
+    PD
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+  <label class="form-check-label" for="radioDefault2">
+   AF
+  </label>
+</div>
 								</div>
 							</div>
 							<div class="inline fields" style="margin-top: 0px; margin-bottom: 5px;">
-								<label style="margin-top: 5px;">Model</label>
-								<div class="field">
+								<label style="margin-top: 5px; font-size:15px;">Model</label>
+								<div class="form-check">
+  <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+  <label class="form-check-label" for="radioDefault1">
+    GPT-5.2
+  </label>
+</div>
+
+								<!-- <div class="field">
 									<div class="ui radio checkbox">
 										<input type="radio" id="gemini" name="provider" checked="checked">
 										<label>Gemini 3.1 Pro</label>
@@ -100,7 +130,7 @@
 										<input type="radio" id="openai" name="provider">
 										<label>GPT-5.2</label>
 									</div>
-								</div>
+								</div> -->
 <!-- 								<div class="field">
 									<div class="ui radio checkbox">
 										<input type="radio" id="gemini" name="provider">
@@ -122,11 +152,19 @@
 				</div>
 				<div class="five wide column">
 					<div class="ui basic input">
-						<textarea id="userInputText" rows="11" cols="40" placeholder="Please enter some info about the map:&#10;- What is it about...&#10;- More details about interactions...&#10;- Info about unclear parts in the image..."></textarea>
+
+
+
+						<!-- "Please enter some info about the map:&#10;- What is it about...&#10;- More details about interactions...&#10;- Info about unclear parts in the image..." -->
+						<textarea id="userInputText" rows="11" cols="40" placeholder="Provide details about the map:
+• Overview
+• Interactions
+• Any unclear areas"></textarea> 
 					</div>
 				</div>
 				<div class="center aligned sixteen wide column" style="margin-top: 0; border-top: 0px !important;">
-					<button id="processData" class="ui orange button">Process Data</button>
+					<!-- <button id="processData" class="ui orange button">Process Data</button> -->
+					 <button type="button" class="btn btn-outline-success">Process Data</button>
 				</div>
 			</div>
 			<div class="two column row" style="padding-bottom: 0; padding-top: 0">
@@ -168,6 +206,7 @@
 		</div>
 	</div>
 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
