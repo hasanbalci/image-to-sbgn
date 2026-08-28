@@ -96,3 +96,9 @@ h1 {
   display: inline-block;
   margin-bottom: 0px;
 }
+
+h2, .ui.header {
+  font-family: 'Inter', sans-serif !important;
+  font-weight : 700;
+}
+
