@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/cytoscape-context-menus.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -17,12 +18,13 @@
 		<div class="ui vertically divided grid">
 			<div class="row" style="padding-bottom: 0; margin-top: 10px;">
 				<div class="four wide column" style="display: flex; align-items: center;">
-					<a href="https://github.com/sciluna" target="_blank" style="color: #d67664;">
+					<a href="https://github.com/sciluna" target="_blank" style="color: #d67664">
 						<h2>Luna Lab</h2>
 					</a>
 				</div>
 				<div class="eight wide column">
-					<h2 class="ui padded center aligned header" style="margin-top: 5px;">
+					<h2 class="ui padded center aligned header" style="margin-top: 5px;
+					">
 						Image-to-SBGN Converter
 					</h2>
 				</div>
@@ -53,9 +55,10 @@
 									</select>
 								</div>
 							</div>
-							<div class="ui button" id="load-file" tabindex="0">
+							<!-- <div class="ui button" id="load-file" tabindex="0">
 								Open File...
-							</div>
+							</div> -->
+							<button type="button" class="btn btn-warning">Open file...</button>
 							<div class="ui button" id="upload-file" tabindex="0" style="display:none" >
 								Load File...
 							</div>
@@ -126,7 +129,8 @@
 					</div>
 				</div>
 				<div class="center aligned sixteen wide column" style="margin-top: 0; border-top: 0px !important;">
-					<button id="processData" class="ui orange button">Process Data</button>
+					<!-- <button id="processData" class="ui orange button">Process Data</button> -->
+					 <button type="button" class="btn btn-outline-success">Process Data</button>
 				</div>
 			</div>
 			<div class="two column row" style="padding-bottom: 0; padding-top: 0">
@@ -168,6 +172,7 @@
 		</div>
 	</div>
 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
