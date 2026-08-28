@@ -1,6 +1,8 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 
-<html>
+<html lang="en">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
 	<title>image-to-sbgn demo</title>
@@ -10,6 +12,15 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/cytoscape-context-menus.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -17,13 +28,14 @@
 		<div class="ui vertically divided grid">
 			<div class="row" style="padding-bottom: 0; margin-top: 10px;">
 				<div class="four wide column" style="display: flex; align-items: center;">
-					<a href="https://github.com/sciluna" target="_blank" style="color: #d67664;">
-						<h2>Luna Lab</h2>
+					<a href="https://github.com/sciluna" target="_blank" style="color: #d67664">
+						<h2 >Luna Lab</h2>
 					</a>
 				</div>
 				<div class="eight wide column">
-					<h2 class="ui padded center aligned header" style="margin-top: 5px;">
-						Image-to-SBGN Converter
+					<h2 class="ui padded center aligned header" style="margin-top: 5px;
+					">
+						Image-to-SBGN Converter</h2>
 					</h2>
 				</div>
 				<div class="four wide column">
@@ -39,7 +51,7 @@
 						<div class="field">
 							<!--   <label id="load-file" class="underline">Open File...</label> -->
 							<div class="inline fields">
-								<label>Open Sample:</label>
+								<label style="font-size: 15px;">Open Sample:</label>
 								<div class="eight wide field">
 									<select required id="samples">
 										<option value="">Select...</option>
@@ -56,6 +68,7 @@
 							<div class="ui button" id="load-file" tabindex="0">
 								Open File...
 							</div>
+							
 							<div class="ui button" id="upload-file" tabindex="0" style="display:none" >
 								Load File...
 							</div>
@@ -73,9 +86,11 @@
 						style="margin-top: 10px; margin-bottom: 5px;">Settings</h3>
 					<div class="ui small form">
 						<div class="field">
-							<div class="inline fields"
-								style="margin-top: 0px; margin-bottom: 5px;">
-								<label style="margin-top: 5px;">Map Type</label>
+							<div class="inline fields"  id="map"
+								style="margin-top: 0px; margin-bottom: 5px;
+								">
+								<label style="margin-top: 5px;
+								font-size:15px;" for="map">Map Type</label>
 								<div class="field">
 									<div class="ui radio checkbox">
 										<input type="radio" id="radioPD" name="language" checked="checked">
@@ -87,10 +102,13 @@
 										<input type="radio" id="radioAF" name="language">
 										<label>AF</label>
 									</div>
+
 								</div>
 							</div>
 							<div class="inline fields" style="margin-top: 0px; margin-bottom: 5px;">
-								<label style="margin-top: 5px;">Model</label>
+								<label style="margin-top: 5px; font-size:15px;">Model</label>
+								
+
 								<div class="field">
 									<div class="ui radio checkbox">
 										<input type="radio" id="gemini" name="provider" checked="checked">
@@ -101,12 +119,12 @@
 										<label>GPT-5.2</label>
 									</div>
 								</div>
-<!-- 								<div class="field">
+								<div class="field">
 									<div class="ui radio checkbox">
 										<input type="radio" id="gemini" name="provider">
 										<label>Gemini 2.0 Flash</label>
 									</div>
-								</div> -->
+								</div>
 							</div>
 						</div>
 					</div>
@@ -121,8 +139,16 @@
 					</div>
 				</div>
 				<div class="five wide column">
-					<div class="ui basic input">
-						<textarea id="userInputText" rows="11" cols="40" placeholder="Please enter some info about the map:&#10;- What is it about...&#10;- More details about interactions...&#10;- Info about unclear parts in the image..."></textarea>
+					<div class="ui basic input" style = "border : 0.1px solid black;
+					border-radius : 5px">
+
+
+
+						<!-- "Please enter some info about the map:&#10;- What is it about...&#10;- More details about interactions...&#10;- Info about unclear parts in the image..." -->
+						<textarea id="userInputText" rows="11" cols="40" placeholder="Provide details about the map:
+• Overview
+• Interactions
+• Any unclear areas"></textarea> 
 					</div>
 				</div>
 				<div class="center aligned sixteen wide column" style="margin-top: 0; border-top: 0px !important;">
@@ -133,8 +159,10 @@
 				<div class="eleven wide column" style="margin-top: 11.5px; padding-left: 7px;">
 					<div class="ui form">
 						<div class="field">
-							<div class="inline fields" style="margin-bottom: 10px;"">
-								<h3 class="ui header" style="margin-bottom: -3px; margin-right: 7.5px; padding: 2.5px;">Graph View</h3>
+							<div class="inline fields" style="margin-bottom: 10px;
+							">
+								<h3 class="ui header" style="margin-bottom: -3px; margin-right: 7.5px; padding: 2.5px;
+								">Graph View</h3>
 								<img class="ui image" id="downloadSbgnml" src="img/download.svg" title="Download as SBGNML" style="height: 25px; width: 25px; padding: 2.5px;">&nbsp;
 								<img class="ui image" id="applyLayout" src="img/layout.svg" title="Apply Layout" style="height: 25px; width: 25px; padding: 2.5px;">
 								<img class="ui image" id="openNewt" src="img/newt-icon.png" title="Open in Newt" style="height: 25px; width: 25px; padding: 2.5px;">
@@ -153,7 +181,9 @@
 								style="margin-bottom: -3px; margin-right: 7.5px; padding: 2.5px;">
 								Object View</h3>
 							<div class="ui segment" id="objectView"
-								style="height: 350px; margin-top: 12px;">
+								style="height: 350px; margin-top: 12px;
+								border : 0.1px solid black;
+								border-radius: 10px;">
 							</div>
 						</div>
 					</div>
@@ -168,6 +198,7 @@
 		</div>
 	</div>
 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
